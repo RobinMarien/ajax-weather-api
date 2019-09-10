@@ -5,3 +5,7 @@ img{
 div{
     border: 2px solid lightblue;
 }
+
+#city{
+    text-align: center;
+}
