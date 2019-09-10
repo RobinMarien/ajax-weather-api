@@ -2,6 +2,18 @@
 
 //http://api.openweathermap.org/data/2.5/weather?q=London&APPID=be9ff22154c259ee7cb563939e17c8f9
 
+var d = new Date();
+var weekday = new Array(7);
+weekday[0] =  "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+var n = weekday[d.getDay()];
+
 document.getElementById("check").addEventListener("click", function(){
 
     var city = document.getElementById("city").value;
