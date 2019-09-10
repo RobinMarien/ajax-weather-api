@@ -2,17 +2,26 @@
 
 //http://api.openweathermap.org/data/2.5/weather?q=London&APPID=be9ff22154c259ee7cb563939e17c8f9
 
-var d = new Date();
-var weekday = new Array(7);
-weekday[0] =  "Sunday";
-weekday[1] = "Monday";
-weekday[2] = "Tuesday";
-weekday[3] = "Wednesday";
-weekday[4] = "Thursday";
-weekday[5] = "Friday";
-weekday[6] = "Saturday";
+let weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+];
 
-var n = weekday[d.getDay()];
+let dayOutput = document.getElementsByClassName("day");
+
+let day = new Date().getDay();
+
+for (let i = 0; i < dayOutput.length; i++, day++) {
+    if (day >= 7) {
+        day = 0;
+    }
+    dayOutput[i].innerHTML = weekdays[day];
+}
 
 document.getElementById("check").addEventListener("click", function(){
 
@@ -24,6 +33,7 @@ document.getElementById("check").addEventListener("click", function(){
             return response.json();
         })
         .then(function(data){
+            /*
             console.log(data);
             //console.log(data.list[0])
             console.log(data.list[0].weather[0].icon);
@@ -37,7 +47,13 @@ document.getElementById("check").addEventListener("click", function(){
             // TOMORROW
             var t2_img = document.getElementById("two");
             var t2_icon = data.list[0].weather[0].icon;
+            */
 
+            var list = data.list;
+
+            list.forEach(function(dataEveryThreeHours){
+                console.log(dataEveryThreeHours);
+            })
 
 
         })
