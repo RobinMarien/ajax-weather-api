@@ -20,10 +20,9 @@ for (let i = 0; i < dayOutput.length; i++, day++) {
 }
 
 // Fetching the OpenWeatherMap information
-
 document.getElementById("check").addEventListener("click", function(){
 
-    var city = document.getElementById("city").value;
+    let city = document.getElementById("city").value;
     console.log(city);
 
     fetch("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=metric&APPID=be9ff22154c259ee7cb563939e17c8f9")
@@ -33,56 +32,55 @@ document.getElementById("check").addEventListener("click", function(){
         .then(function(data){
             console.log(data.list);
 
-            var temp1_arr = [];
-            var tempMin1_arr = [];
-            var tempMax1_arr = [];
-            var weather1 = [];
+            let temp1_arr = [];
+            let tempMin1_arr = [];
+            let tempMax1_arr = [];
+            let weather1 = [];
 
-            var temp2_arr = [];
-            var tempMin2_arr = [];
-            var tempMax2_arr = [];
-            var weather2 = [];
+            let temp2_arr = [];
+            let tempMin2_arr = [];
+            let tempMax2_arr = [];
+            let weather2 = [];
 
-            var temp3_arr = [];
-            var tempMin3_arr = [];
-            var tempMax3_arr = [];
-            var weather3 = [];
+            let temp3_arr = [];
+            let tempMin3_arr = [];
+            let tempMax3_arr = [];
+            let weather3 = [];
 
-            var temp4_arr = [];
-            var tempMin4_arr = [];
-            var tempMax4_arr = [];
-            var weather4 = [];
+            let temp4_arr = [];
+            let tempMin4_arr = [];
+            let tempMax4_arr = [];
+            let weather4 = [];
 
-            var temp5_arr = [];
-            var tempMin5_arr = [];
-            var tempMax5_arr = [];
-            var weather5 = [];
+            let temp5_arr = [];
+            let tempMin5_arr = [];
+            let tempMax5_arr = [];
+            let weather5 = [];
 
-            var list = data.list;
+            let list = data.list;
 
             let day1 = new Date();
-            var dateNow = day1.getDate();
+            let dateNow = day1.getDate();
 
-            var day2 = new Date();
+            let day2 = new Date();
             day2.setDate(dateNow+1);
-            var date2 = day2.getDate();
+            let date2 = day2.getDate();
 
-            var day3 = new Date();
+            let day3 = new Date();
             day3.setDate(dateNow+2);
-            var date3 = day3.getDate();
+            let date3 = day3.getDate();
 
-            var day4 = new Date();
+            let day4 = new Date();
             day4.setDate(dateNow+3);
-            var date4 = day4.getDate();
+            let date4 = day4.getDate();
 
-            var day5 = new Date();
+            let day5 = new Date();
             day5.setDate(dateNow+4);
-            var date5 = day5.getDate();
-
+            let date5 = day5.getDate();
 
             list.forEach(function(dataEveryThreeHours){
-
-                var dateNumber = parseInt((dataEveryThreeHours.dt_txt).slice(8,10));
+                
+                let dateNumber = parseInt((dataEveryThreeHours.dt_txt).slice(8,10));
 
 
                 if (dateNumber === dateNow){
@@ -120,7 +118,6 @@ document.getElementById("check").addEventListener("click", function(){
             });
 
             //Get the most occurring element in weather array | https://stackoverflow.com/questions/53509971/get-most-occurring-elements-in-array-javascript
-
             const mostFrequent = data => data.reduce((r,c,i,a) => {
                 r[c] = (r[c] || 0) + 1;
                 r.max = r[c] > r.max ? r[c] : r.max;
@@ -131,23 +128,17 @@ document.getElementById("check").addEventListener("click", function(){
                 return r
             }, {max: 0});
 
-
             //DAY ONE temp
-            var sum1 = temp1_arr.reduce(function (accumulator, currentValue) {
+            let sum1 = temp1_arr.reduce(function (accumulator, currentValue) {
                 return accumulator + currentValue;
             }, 0);
-            var sumMin1 = tempMin1_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
-            var sumMax1 = tempMax1_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
+
             document.getElementById("temp1").innerText = (sum1 / (temp1_arr.length)).toFixed(1) + " °C";
             document.getElementById("tempMin1").innerText = Math.min(...tempMin1_arr).toFixed(1) + " °C";
             document.getElementById("tempMax1").innerText = Math.max(...tempMax1_arr).toFixed(1) + " °C";
 
             //DAY ONE icon
-            var icon1 = document.getElementById("icon1");
+            let icon1 = document.getElementById("icon1");
 
             if ((mostFrequent(weather1)[0]) === "Rain"){
                 icon1.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
@@ -172,21 +163,16 @@ document.getElementById("check").addEventListener("click", function(){
             }
 
             //DAY TWO
-            var sum2 = temp2_arr.reduce(function (accumulator, currentValue) {
+            let sum2 = temp2_arr.reduce(function (accumulator, currentValue) {
                 return accumulator + currentValue;
             }, 0);
-            var sumMin2 = tempMin2_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
-            var sumMax2 = tempMax2_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
+
             document.getElementById("temp2").innerText = (sum2 / (temp2_arr.length)).toFixed(1) + " °C";
             document.getElementById("tempMin2").innerText = Math.min(...tempMin2_arr).toFixed(1) + " °C";
             document.getElementById("tempMax2").innerText = Math.max(...tempMax2_arr).toFixed(1) + " °C";
 
             //DAY TWO icon
-            var icon2 = document.getElementById("icon2");
+            let icon2 = document.getElementById("icon2");
 
             if ((mostFrequent(weather2)[0]) === "Rain"){
                 icon2.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
@@ -211,21 +197,16 @@ document.getElementById("check").addEventListener("click", function(){
             }
 
             //DAY THREE
-            var sum3 = temp3_arr.reduce(function (accumulator, currentValue) {
+            let sum3 = temp3_arr.reduce(function (accumulator, currentValue) {
                 return accumulator + currentValue;
             }, 0);
-            var sumMin3 = tempMin3_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
-            var sumMax3 = tempMax3_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
+
             document.getElementById("temp3").innerText = (sum3 / (temp3_arr.length)).toFixed(1) + " °C";
             document.getElementById("tempMin3").innerText = Math.min(...tempMin3_arr).toFixed(1) + " °C";
             document.getElementById("tempMax3").innerText = Math.max(...tempMax3_arr).toFixed(1) + " °C";
 
             //DAY THREE icon
-            var icon3 = document.getElementById("icon3");
+            let icon3 = document.getElementById("icon3");
 
             if ((mostFrequent(weather3)[0]) === "Rain"){
                 icon3.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
@@ -250,21 +231,16 @@ document.getElementById("check").addEventListener("click", function(){
             }
 
             //DAY FOUR
-            var sum4 = temp4_arr.reduce(function (accumulator, currentValue) {
+            let sum4 = temp4_arr.reduce(function (accumulator, currentValue) {
                 return accumulator + currentValue;
             }, 0);
-            var sumMin4 = tempMin4_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
-            var sumMax4 = tempMax4_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
+
             document.getElementById("temp4").innerText = (sum4 / (temp4_arr.length)).toFixed(1) + " °C";
             document.getElementById("tempMin4").innerText = Math.min(...tempMin4_arr).toFixed(1) + " °C";
             document.getElementById("tempMax4").innerText = Math.max(...tempMax4_arr).toFixed(1) + " °C";;
 
             //DAY FOUR icon
-            var icon4 = document.getElementById("icon4");
+            let icon4 = document.getElementById("icon4");
 
             if ((mostFrequent(weather4)[0]) === "Rain"){
                 icon4.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
@@ -288,21 +264,16 @@ document.getElementById("check").addEventListener("click", function(){
                 icon4.setAttribute("src", "http://openweathermap.org/img/wn/50d@2x.png");
             }
             //DAY FIVE
-            var sum5 = temp5_arr.reduce(function (accumulator, currentValue) {
+            let sum5 = temp5_arr.reduce(function (accumulator, currentValue) {
                 return accumulator + currentValue;
             }, 0);
-            var sumMin5 = tempMin5_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
-            var sumMax5 = tempMax5_arr.reduce(function (accumulator, currentValue) {
-                return accumulator + currentValue;
-            }, 0);
+
             document.getElementById("temp5").innerText = (sum5 / (temp5_arr.length)).toFixed(1) + " °C";
             document.getElementById("tempMin5").innerText = Math.min(...tempMin5_arr).toFixed(1) + " °C";
             document.getElementById("tempMax5").innerText = Math.max(...tempMax5_arr).toFixed(1) + " °C";
 
             //DAY FIVE icon
-            var icon5 = document.getElementById("icon5");
+            let icon5 = document.getElementById("icon5");
 
             if ((mostFrequent(weather5)[0]) === "Rain"){
                 icon5.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
