@@ -1,7 +1,4 @@
-// API KEY :  be9ff22154c259ee7cb563939e17c8f9
-
-//Displaying the days
-
+//Displaying the correct days
 let weekdays = [
     "Sunday",
     "Monday",
@@ -13,7 +10,6 @@ let weekdays = [
 ];
 
 let dayOutput = document.getElementsByClassName("day");
-
 let day = new Date().getDay();
 
 for (let i = 0; i < dayOutput.length; i++, day++) {
@@ -22,7 +18,6 @@ for (let i = 0; i < dayOutput.length; i++, day++) {
     }
     dayOutput[i].innerHTML = weekdays[day];
 }
-
 
 // Fetching the OpenWeatherMap information
 
@@ -38,17 +33,6 @@ document.getElementById("check").addEventListener("click", function(){
         .then(function(data){
             console.log(data.list);
 
-            /*
-            console.log(data);
-            //console.log(data.list[0])
-            console.log(data.list[0].weather[0].icon);
-
-            // TODAY
-            var t1_img = document.getElementById("one");
-            var t1_icon = data.list[0].weather[0].icon;
-
-            t1_img.setAttribute("src", "http://openweathermap.org/img/wn/"+t1_icon+"@2x.png");
-            */
             var temp1_arr = [];
             var tempMin1_arr = [];
             var tempMax1_arr = [];
@@ -98,38 +82,35 @@ document.getElementById("check").addEventListener("click", function(){
 
             list.forEach(function(dataEveryThreeHours){
 
-                //console.log(dataEveryThreeHours);
-
-
                 var dateNumber = parseInt((dataEveryThreeHours.dt_txt).slice(8,10));
 
 
-                if (dateNumber == dateNow){
+                if (dateNumber === dateNow){
                     temp1_arr.push(dataEveryThreeHours.main.temp);
                     tempMin1_arr.push(dataEveryThreeHours.main.temp_min);
                     tempMax1_arr.push(dataEveryThreeHours.main.temp_max);
                     weather1.push(dataEveryThreeHours.weather[0].main);
 
                 }
-                else if  (dateNumber == date2){
+                else if  (dateNumber === date2){
                     temp2_arr.push(dataEveryThreeHours.main.temp);
                     tempMin2_arr.push(dataEveryThreeHours.main.temp_min);
                     tempMax2_arr.push(dataEveryThreeHours.main.temp_max);
                     weather2.push(dataEveryThreeHours.weather[0].main);
                 }
-                else if  (dateNumber == date3){
+                else if  (dateNumber === date3){
                     temp3_arr.push(dataEveryThreeHours.main.temp);
                     tempMin3_arr.push(dataEveryThreeHours.main.temp_min);
                     tempMax3_arr.push(dataEveryThreeHours.main.temp_max);
                     weather3.push(dataEveryThreeHours.weather[0].main);
                 }
-                else if  (dateNumber == date4){
+                else if  (dateNumber === date4){
                     temp4_arr.push(dataEveryThreeHours.main.temp);
                     tempMin4_arr.push(dataEveryThreeHours.main.temp_min);
                     tempMax4_arr.push(dataEveryThreeHours.main.temp_max);
                     weather4.push(dataEveryThreeHours.weather[0].main);
                 }
-                else if  (dateNumber == date5){
+                else if  (dateNumber === date5){
                     temp5_arr.push(dataEveryThreeHours.main.temp);
                     tempMin5_arr.push(dataEveryThreeHours.main.temp_min);
                     tempMax5_arr.push(dataEveryThreeHours.main.temp_max);
@@ -150,7 +131,6 @@ document.getElementById("check").addEventListener("click", function(){
                 return r
             }, {max: 0});
 
-            console.log(mostFrequent(weather1)[0]);
 
             //DAY ONE temp
             var sum1 = temp1_arr.reduce(function (accumulator, currentValue) {
@@ -163,28 +143,28 @@ document.getElementById("check").addEventListener("click", function(){
                 return accumulator + currentValue;
             }, 0);
             document.getElementById("temp1").innerText = (sum1 / (temp1_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMin1").innerText = (sumMin1 / (tempMin1_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMax1").innerText = (sumMax1 / (tempMax1_arr.length)).toFixed(1) + " °C";
+            document.getElementById("tempMin1").innerText = Math.min(...tempMin1_arr).toFixed(1) + " °C";
+            document.getElementById("tempMax1").innerText = Math.max(...tempMax1_arr).toFixed(1) + " °C";
 
             //DAY ONE icon
             var icon1 = document.getElementById("icon1");
 
-            if ((mostFrequent(weather1)[0]) == "Rain"){
+            if ((mostFrequent(weather1)[0]) === "Rain"){
                 icon1.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
             }
-            else if ((mostFrequent(weather1)[0]) == "Thunderstorm"){
+            else if ((mostFrequent(weather1)[0]) === "Thunderstorm"){
                 icon1.setAttribute("src", "http://openweathermap.org/img/wn/11d@2x.png");
             }
-            else if ((mostFrequent(weather1)[0]) == "Clouds"){
+            else if ((mostFrequent(weather1)[0]) === "Clouds"){
                 icon1.setAttribute("src", "http://openweathermap.org/img/wn/04d@2x.png");
             }
-            else if ((mostFrequent(weather1)[0]) == "Clear"){
+            else if ((mostFrequent(weather1)[0]) === "Clear"){
                 icon1.setAttribute("src", "http://openweathermap.org/img/wn/01d@2x.png");
             }
-            else if ((mostFrequent(weather1)[0]) == "Snow"){
+            else if ((mostFrequent(weather1)[0]) === "Snow"){
                 icon1.setAttribute("src", "http://openweathermap.org/img/wn/13d@2x.png");
             }
-            else if ((mostFrequent(weather1)[0]) == "Drizzle"){
+            else if ((mostFrequent(weather1)[0]) === "Drizzle"){
                 icon1.setAttribute("src", "http://openweathermap.org/img/wn/09d@2x.png");
             }
             else{
@@ -202,8 +182,33 @@ document.getElementById("check").addEventListener("click", function(){
                 return accumulator + currentValue;
             }, 0);
             document.getElementById("temp2").innerText = (sum2 / (temp2_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMin2").innerText = (sumMin2 / (tempMin2_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMax2").innerText = (sumMax2 / (tempMax2_arr.length)).toFixed(1) + " °C";
+            document.getElementById("tempMin2").innerText = Math.min(...tempMin2_arr).toFixed(1) + " °C";
+            document.getElementById("tempMax2").innerText = Math.max(...tempMax2_arr).toFixed(1) + " °C";
+
+            //DAY TWO icon
+            var icon2 = document.getElementById("icon2");
+
+            if ((mostFrequent(weather2)[0]) === "Rain"){
+                icon2.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
+            }
+            else if ((mostFrequent(weather2)[0]) === "Thunderstorm"){
+                icon2.setAttribute("src", "http://openweathermap.org/img/wn/11d@2x.png");
+            }
+            else if ((mostFrequent(weather2)[0]) === "Clouds"){
+                icon2.setAttribute("src", "http://openweathermap.org/img/wn/04d@2x.png");
+            }
+            else if ((mostFrequent(weather2)[0]) === "Clear"){
+                icon2.setAttribute("src", "http://openweathermap.org/img/wn/01d@2x.png");
+            }
+            else if ((mostFrequent(weather2)[0]) === "Snow"){
+                icon2.setAttribute("src", "http://openweathermap.org/img/wn/13d@2x.png");
+            }
+            else if ((mostFrequent(weather2)[0]) === "Drizzle"){
+                icon2.setAttribute("src", "http://openweathermap.org/img/wn/09d@2x.png");
+            }
+            else{
+                icon2.setAttribute("src", "http://openweathermap.org/img/wn/50d@2x.png");
+            }
 
             //DAY THREE
             var sum3 = temp3_arr.reduce(function (accumulator, currentValue) {
@@ -216,8 +221,33 @@ document.getElementById("check").addEventListener("click", function(){
                 return accumulator + currentValue;
             }, 0);
             document.getElementById("temp3").innerText = (sum3 / (temp3_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMin3").innerText = (sumMin3 / (tempMin3_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMax3").innerText = (sumMax3 / (tempMax3_arr.length)).toFixed(1) + " °C";
+            document.getElementById("tempMin3").innerText = Math.min(...tempMin3_arr).toFixed(1) + " °C";
+            document.getElementById("tempMax3").innerText = Math.max(...tempMax3_arr).toFixed(1) + " °C";
+
+            //DAY THREE icon
+            var icon3 = document.getElementById("icon3");
+
+            if ((mostFrequent(weather3)[0]) === "Rain"){
+                icon3.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
+            }
+            else if ((mostFrequent(weather3)[0]) === "Thunderstorm"){
+                icon3.setAttribute("src", "http://openweathermap.org/img/wn/11d@2x.png");
+            }
+            else if ((mostFrequent(weather3)[0]) === "Clouds"){
+                icon3.setAttribute("src", "http://openweathermap.org/img/wn/04d@2x.png");
+            }
+            else if ((mostFrequent(weather3)[0]) === "Clear"){
+                icon3.setAttribute("src", "http://openweathermap.org/img/wn/01d@2x.png");
+            }
+            else if ((mostFrequent(weather3)[0]) === "Snow"){
+                icon3.setAttribute("src", "http://openweathermap.org/img/wn/13d@2x.png");
+            }
+            else if ((mostFrequent(weather3)[0]) === "Drizzle"){
+                icon3.setAttribute("src", "http://openweathermap.org/img/wn/09d@2x.png");
+            }
+            else{
+                icon3.setAttribute("src", "http://openweathermap.org/img/wn/50d@2x.png");
+            }
 
             //DAY FOUR
             var sum4 = temp4_arr.reduce(function (accumulator, currentValue) {
@@ -230,9 +260,33 @@ document.getElementById("check").addEventListener("click", function(){
                 return accumulator + currentValue;
             }, 0);
             document.getElementById("temp4").innerText = (sum4 / (temp4_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMin4").innerText = (sumMin4 / (tempMin1_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMax4").innerText = (sumMax4 / (tempMax1_arr.length)).toFixed(1) + " °C";
+            document.getElementById("tempMin4").innerText = Math.min(...tempMin4_arr).toFixed(1) + " °C";
+            document.getElementById("tempMax4").innerText = Math.max(...tempMax4_arr).toFixed(1) + " °C";;
 
+            //DAY FOUR icon
+            var icon4 = document.getElementById("icon4");
+
+            if ((mostFrequent(weather4)[0]) === "Rain"){
+                icon4.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
+            }
+            else if ((mostFrequent(weather4)[0]) === "Thunderstorm"){
+                icon4.setAttribute("src", "http://openweathermap.org/img/wn/11d@2x.png");
+            }
+            else if ((mostFrequent(weather4)[0]) === "Clouds"){
+                icon4.setAttribute("src", "http://openweathermap.org/img/wn/04d@2x.png");
+            }
+            else if ((mostFrequent(weather4)[0]) === "Clear"){
+                icon4.setAttribute("src", "http://openweathermap.org/img/wn/01d@2x.png");
+            }
+            else if ((mostFrequent(weather4)[0]) === "Snow"){
+                icon4.setAttribute("src", "http://openweathermap.org/img/wn/13d@2x.png");
+            }
+            else if ((mostFrequent(weather4)[0]) === "Drizzle"){
+                icon4.setAttribute("src", "http://openweathermap.org/img/wn/09d@2x.png");
+            }
+            else{
+                icon4.setAttribute("src", "http://openweathermap.org/img/wn/50d@2x.png");
+            }
             //DAY FIVE
             var sum5 = temp5_arr.reduce(function (accumulator, currentValue) {
                 return accumulator + currentValue;
@@ -244,9 +298,32 @@ document.getElementById("check").addEventListener("click", function(){
                 return accumulator + currentValue;
             }, 0);
             document.getElementById("temp5").innerText = (sum5 / (temp5_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMin5").innerText = (sumMin5 / (tempMin5_arr.length)).toFixed(1) + " °C";
-            document.getElementById("tempMax5").innerText = (sumMax5 / (tempMax5_arr.length)).toFixed(1) + " °C";
+            document.getElementById("tempMin5").innerText = Math.min(...tempMin5_arr).toFixed(1) + " °C";
+            document.getElementById("tempMax5").innerText = Math.max(...tempMax5_arr).toFixed(1) + " °C";
 
+            //DAY FIVE icon
+            var icon5 = document.getElementById("icon5");
 
+            if ((mostFrequent(weather5)[0]) === "Rain"){
+                icon5.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
+            }
+            else if ((mostFrequent(weather5)[0]) === "Thunderstorm"){
+                icon5.setAttribute("src", "http://openweathermap.org/img/wn/11d@2x.png");
+            }
+            else if ((mostFrequent(weather5)[0]) === "Clouds"){
+                icon5.setAttribute("src", "http://openweathermap.org/img/wn/04d@2x.png");
+            }
+            else if ((mostFrequent(weather5)[0]) === "Clear"){
+                icon5.setAttribute("src", "http://openweathermap.org/img/wn/01d@2x.png");
+            }
+            else if ((mostFrequent(weather5)[0]) === "Snow"){
+                icon5.setAttribute("src", "http://openweathermap.org/img/wn/13d@2x.png");
+            }
+            else if ((mostFrequent(weather5)[0]) === "Drizzle"){
+                icon5.setAttribute("src", "http://openweathermap.org/img/wn/09d@2x.png");
+            }
+            else{
+                icon5.setAttribute("src", "http://openweathermap.org/img/wn/50d@2x.png");
+            }
         })
 });
