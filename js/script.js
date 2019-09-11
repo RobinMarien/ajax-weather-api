@@ -1,12 +1,12 @@
 //Displaying the correct days
 let weekdays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
+    "Sun.",
+    "Mon.",
+    "Tue.",
+    "Wed.",
+    "Thu.",
+    "Fri.",
+    "Sat."
 ];
 
 let dayOutput = document.getElementsByClassName("day");
@@ -22,10 +22,15 @@ for (let i = 0; i < dayOutput.length; i++, day++) {
 // Fetching the OpenWeatherMap information
 document.getElementById("check").addEventListener("click", function(){
 
-    let city = document.getElementById("city").value;
-    console.log(city);
+    //Make the info section visible
+    let info_array = document.getElementsByClassName("info");
+    for (let i=0; i<info_array.length;i++){
+        info_array[i].style.display='inline';
+    }
 
-    fetch("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=metric&APPID=be9ff22154c259ee7cb563939e17c8f9")
+    let city = document.getElementById("city").value;
+
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=metric&APPID=be9ff22154c259ee7cb563939e17c8f9")
         .then(function(response){
             return response.json();
         })

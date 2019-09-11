@@ -7,81 +7,90 @@
     <meta name="keywords" content="weather, forecast">
     <meta name="author" content="Robin Mariën">
     <title>Weather Forecast</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
     <div class="container text-center">
         <div class="row">
-            <div class="col-sm-12">
-                <input id="city">
+            <div class="col-sm-12" id="top">
+                <input id="city" placeholder="Enter a city">
                 <button type="button" id="check">Check</button>
             </div>
         </div>
-        <div class ="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-2">
+        <div class ="row justify-content-md-center">
+            <div class="box col-md-2">
                 <div class="container text-center">
                     <p><span class="day"></span>
                     </p>
                 </div>
-                <p>Avg. Temp: <span id="temp1"></span>
-                </p>
-                <p>Min. Temp: <span id="tempMin1"></span>
-                </p>
-                <p>Max. Temp: <span id="tempMax1"></span>
-                </p>
-                <img id="icon1">
+                <div class="info">
+                    <p>Avg. Temp: </p>
+                    <p class="temp" id="temp1"></p>
+                    <p>Min. Temp: </p>
+                    <p class="temp" id="tempMin1"></p>
+                    <p>Max. Temp: </p>
+                    <p class="temp" id="tempMax1"></p>
+                    <img id="icon1">
+                </div>
             </div>
-            <div class="col-md-2">
+            <div class="box col-md-2">
                 <div class="container text-center">
                     <p class="day"></p>
                 </div>
-                <p>Avg. Temp: <span id="temp2"></span>
-                </p>
-                <p>Min. Temp: <span id="tempMin2"></span>
-                </p>
-                <p>Max. Temp: <span id="tempMax2"></span>
-                </p>
-                <img id="icon2">
+                <div class="info">
+                    <p>Avg. Temp: </p>
+                    <p class="temp" id="temp2"></p>
+                    <p>Min. Temp: </p>
+                    <p class="temp" id="tempMin2"></p>
+                    <p>Max. Temp: </p>
+                    <p class="temp" id="tempMax2"></p>
+                    <img id="icon2">
+                </div>
             </div>
-            <div class="col-md-2">
+            <div class="box col-md-2">
                 <div class="container text-center">
                     <p class="day"></p>
                 </div>
-                <p>Avg. Temp: <span id="temp3"></span>
-                </p>
-                <p>Min. Temp: <span id="tempMin3"></span>
-                </p>
-                <p>Max. Temp: <span id="tempMax3"></span>
-                </p>
-                <img id="icon3">
+                <div class="info">
+                    <p>Avg. Temp: </p>
+                    <p class="temp" id="temp3"></p>
+                    <p>Min. Temp: </p>
+                    <p class="temp" id="tempMin3"></p>
+                    <p>Max. Temp: </p>
+                    <p class="temp" id="tempMax3"></p>
+                    <img id="icon3">
+                </div>
             </div>
-            <div class="col-md-2">
+            <div class="box col-md-2">
                 <div class="container text-center">
                     <p class="day"></p>
                 </div>
-                <p>Avg. Temp: <span id="temp4"></span>
-                </p>
-                <p>Min. Temp: <span id="tempMin4"></span>
-                </p>
-                <p>Max. Temp: <span id="tempMax4"></span>
-                </p>
-                <img id="icon4">
+                <div class="info">
+                    <p>Avg. Temp: </p>
+                    <p class="temp" id="temp4"></p>
+                    <p>Min. Temp: </p>
+                    <p class="temp" id="tempMin4"></p>
+                    <p>Max. Temp: </p>
+                    <p class="temp" id="tempMax4"></p>
+                    <img id="icon4">
+                </div>
             </div>
-            <div class="col-md-2">
+            <div class="box col-md-2">
                 <div class="container text-center">
                     <p class="day"></p>
                 </div>
-                <p>Avg. Temp: <span id="temp5"></span>
-                </p>
-                <p>Min. Temp: <span id="tempMin5"></span>
-                </p>
-                <p>Max. Temp: <span id="tempMax5"></span>
-                </p>
-                <img id="icon5">
+                <div class="info">
+                    <p>Avg. Temp: </p>
+                    <p class="temp" id="temp5"></p>
+                    <p>Min. Temp: </p>
+                    <p class="temp" id="tempMin5"></p>
+                    <p>Max. Temp: </p>
+                    <p class="temp" id="tempMax5"></p>
+                    <img id="icon5">
+                </div>
             </div>
-            <div class="col-md-1"></div>
         </div>
     </div>
 
